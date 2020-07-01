@@ -34,5 +34,25 @@
     "The Works of Edgar Allan Poe, The Raven Edition by Edgar Allan Poe": {
         "status": false,
         "url": "http://www.gutenberg.org/ebooks/25525.txt.utf-8"
+    },
+    "A Journey Round My Room by Xavier de Maistre": {
+        "status": false,
+        "url": "http://www.gutenberg.org/files/62519/62519-0.txt"
+    },
+    "Attila and His Conquerors: A Story of the Days of St. Patrick and St. Leo the": {
+        "status": false,
+        "url": "http://www.gutenberg.org/files/61247/61247-0.txt"
+    },
+    "A Satyr Against Hypocrites by John Phillips": {
+        "status": false,
+        "url": "http://www.gutenberg.org/files/49323/49323-0.txt"
+    },
+    "Bill Nye's Red Book by Bill Nye": {
+        "status": false,
+        "url": "http://www.gutenberg.org/ebooks/51973.txt.utf-8"
+    },
+    "North American Recent Soft-Shelled Turtles (Family Trionychidae) by Robert G. Webb": {
+        "status": false,
+        "url": "http://www.gutenberg.org/ebooks/40005.txt.utf-8"
     }
 }
