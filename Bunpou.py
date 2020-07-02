@@ -24,50 +24,6 @@ import os, re, json, requests
 # ベクトルの高い文法を抽出して確かめる
 # リンクから学習を実行できるようにする
 
-# 学習データを取得する
-with open("history.json", "r") as f:
-    _history = json.load(f)
-history_data = {}
-history_data = _history
-
-for key in history_data:
-    if history_data[key]["status"] == False:
-        break
-
-history_data[key]["status"] = True
-
-with open("history.json", "w") as f:
-    json.dump(history_data, f, indent=4)
-
-# テキストファイル読み込み
-r = requests.get(history_data[key]["url"])
-text = r.text
-
-# テキストの記号や空白を削除する
-text = text.replace("“", "")
-text = text.replace("”", "")
-text = text.replace("  ", " ")
-text = text.replace("\n", "")
-text = text.replace("? ","?")
-text = text.replace(". ",".")
-text = re.split("[.?]", text)
-
-# テキスト全体のサイズ
-text_length = len(text)
-# L1
-i = 0
-# L2
-j = 0
-# 一文の列の変数初期化
-w = 0
-# データ一時保存
-list = {}
-# 重複防止
-slash = []
-_slash = []
-# 連結関数に使用
-word = ''
-
 def json_save(word):
     '''
         jsonに文法を保存し、カウントします。
@@ -128,60 +84,113 @@ def renketu(j, text_line, text_line_length):
             # save
             json_save(w_s)
 
+try:
+    while True:
+        # 学習データを取得する
+        with open("history.json", "r") as f:
+            _history = json.load(f)
+        history_data = {}
+        history_data = _history
 
-# L1 メインの行のループ
-while i < text_length:
-    os.system("cls")
-    print("+ Bunpou +")
-    print("text line : 現在プロセス/総プロセス数")
-    print("text line : {}/{}".format(str(i), text_length-1))
+        for hd_key in history_data:
+            if history_data[hd_key]["status"] == False:
+                break
 
-    # 配列結合
-    slash.extend(_slash)
-    _slash.clear()
+        history_data[hd_key]["status"] = True
 
-    # 5列以上空白のある行は飛ばす
-    if "     " not in text[i]:
+        with open("history.json", "w") as f:
+            json.dump(history_data, f, indent=4)
 
-        # sentence row list
-        text_line = text[i].split(" ")
+        # テキストファイル読み込み
+        r = requests.get(history_data[hd_key]["url"])
+        text = r.text
 
-        # 一文の単語のサイズ
-        text_line_length = len(text_line)
+        # テキストの記号や空白を削除する
+        text = text.replace("“", "")
+        text = text.replace("”", "")
+        text = text.replace("  ", " ")
+        text = text.replace("\n", "")
+        text = text.replace("? ","?")
+        text = text.replace(". ",".")
+        text = re.split("[.?]", text)
 
-        j = i+1
+        # テキスト全体のサイズ
+        text_length = len(text)
+        # L1
+        i = 0
+        # L2
+        j = 0
+        # 一文の列の変数初期化
+        w = 0
+        # データ一時保存
+        list = {}
+        # 重複防止
+        slash = []
+        _slash = []
+        # 連結関数に使用
+        word = ''
+
+
+        # L1 メインの行のループ
+        while i < text_length:
+            os.system("cls")
+            print("+ Bunpou +")
+            print("text line : 現在プロセス/総プロセス数")
+            print("text line : {}/{}".format(str(i), text_length-1))
+
+            # 配列結合
+            slash.extend(_slash)
+            _slash.clear()
+
+            # 5列以上空白のある行は飛ばす
+            if "     " not in text[i]:
+
+                # sentence row list
+                text_line = text[i].split(" ")
+
+                # 一文の単語のサイズ
+                text_line_length = len(text_line)
+
+                j = i+1
+                
+                # L2 比較する行をループ
+                while j < text_length:
+
+                    # 一文の列をループ
+                    w = 0
+
+                    while w < text_line_length:
+
+                        # 単語抽出
+                        word = text_line[w]
+
+                        # 次の文に単語が含まれていたら次の単語と連結する
+                        renketu(j, text_line, text_line_length)
+
+                    j += 1
+
+            i += 1
+
+        print("now writing...")
+        with open("Bunpou.json", "r") as f:
+            bunpou_data = json.load(f)
+        listData = {}
+        listData = bunpou_data
+
+        for key in list:
+            try:
+                listData[key] = listData[key] + list[key]
+            except:
+                listData[key] = list[key]
+
+        with open("Bunpou.json", "w") as f:
+            json.dump(listData, f, indent=4)
+
+
+        print("complete!")
         
-        # L2 比較する行をループ
-        while j < text_length:
-
-            # 一文の列をループ
-            w = 0
-
-            while w < text_line_length:
-
-                # 単語抽出
-                word = text_line[w]
-
-                # 次の文に単語が含まれていたら次の単語と連結する
-                renketu(j, text_line, text_line_length)
-
-            j += 1
-
-    i += 1
-
-print("now writing...")
-with open("Bunpou.json", "r") as f:
-    bunpou_data = json.load(f)
-listData = {}
-listData = bunpou_data
-
-for key in list:
-    try:
-        listData[key] = listData[key] + list[key]
-    except:
-        listData[key] = list[key]
-
-with open("Bunpou.json", "w") as f:
-    json.dump(listData, f, indent=4)
-
-print("complete!")
+except KeyboardInterrupt:
+    print("プログラムを中断しています。\nこのプロセスで学習したデータは削除されます。")
+    history_data[hd_key]["status"] = False
+    with open("history.json", "w") as f:
+        json.dump(history_data, f, indent=4)

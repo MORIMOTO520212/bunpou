@@ -54,5 +54,65 @@
     "North American Recent Soft-Shelled Turtles (Family Trionychidae) by Robert G. Webb": {
         "status": true,
         "url": "http://www.gutenberg.org/ebooks/40005.txt.utf-8"
+    },
+    "Explorers and Travellers by A. W. Greely": {
+        "status": false,
+        "url": "http://www.gutenberg.org/ebooks/36069.txt.utf-8"
+    },
+    "Roughing It by Mark Twain": {
+        "status": false,
+        "url": "http://www.gutenberg.org/files/3177/3177-0.txt"
+    },
+    "Captain Cook's Journal During His First Voyage Round the World by James Cook": {
+        "status": false,
+        "url": "http://www.gutenberg.org/ebooks/8106.txt.utf-8"
+    },
+    "Sailing Alone Around the World by Joshua Slocum": {
+        "status": false,
+        "url": "http://www.gutenberg.org/ebooks/6317.txt.utf-8"
+    },
+    "The Journals of Lewis and Clark, 1804-1806 by William Clark and Meriwether Lewis": {
+        "status": false,
+        "url": "http://www.gutenberg.org/ebooks/8419.txt.utf-8"
+    },
+    "What I Saw in America by G. K. Chesterton": {
+        "status": false,
+        "url": "http://www.gutenberg.org/ebooks/27250.txt.utf-8"
+    },
+    "My Attainment of the Pole by Frederick Albert Cook": {
+        "status": false,
+        "url": "http://www.gutenberg.org/ebooks/36962.txt.utf-8"
+    },
+    "The Sea: Its Stirring Story of Adventure, Peril, & Heroism. Volume 1 by Whymper": {
+        "status": false,
+        "url": "http://www.gutenberg.org/files/39341/39341-0.txt"
+    },
+    "The Sea: Its Stirring Story of Adventure, Peril, & Heroism. Volume 2 by Whymper": {
+        "status": false,
+        "url": "http://www.gutenberg.org/files/39342/39342-0.txt"
+    },
+    "The Sea: Its Stirring Story of Adventure, Peril, & Heroism. Volume 3 by Whymper": {
+        "status": false,
+        "url": "http://www.gutenberg.org/files/39343/39343-0.txt"
+    },
+    "The Sea: Its Stirring Story of Adventure, Peril, & Heroism. Volume 4 by Whymper": {
+        "status": false,
+        "url": "http://www.gutenberg.org/files/45033/45033-0.txt"
+    },
+    "Adventures in Swaziland: The Story of a South African Boer by Owen Rowe O'Neil": {
+        "status": false,
+        "url": "http://www.gutenberg.org/ebooks/38447.txt.utf-8"
+    },
+    "Dracula by Bram Stoker": {
+        "status": false,
+        "url": "http://www.gutenberg.org/ebooks/345.txt.utf-8"
+    },
+    "Grimms' Fairy Tales by Jacob Grimm and Wilhelm Grimm": {
+        "status": false,
+        "url": "http://www.gutenberg.org/files/2591/2591-0.txt"
+    },
+    "The Brothers Karamazov by Fyodor Dostoyevsky": {
+        "status": false,
+        "url": "http://www.gutenberg.org/files/28054/28054-0.txt"
     }
 }
