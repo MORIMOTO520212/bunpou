@@ -24,6 +24,9 @@ import os, re, json, requests
 # ベクトルの高い文法を抽出して確かめる
 # リンクから学習を実行できるようにする
 
+word = ''
+w = 0
+
 def json_save(word):
     '''
         jsonに文法を保存し、カウントします。
@@ -120,7 +123,7 @@ try:
         i = 0
         # L2
         j = 0
-        # 一文の列の変数初期化
+        # 一文の列の変数
         w = 0
         # データ一時保存
         list = {}
@@ -137,6 +140,7 @@ try:
             print("+ Bunpou +")
             print("text line : 現在プロセス/総プロセス数")
             print("text line : {}/{}".format(str(i), text_length-1))
+            print("Ctrl+C to quit")
 
             # 配列結合
             slash.extend(_slash)

@@ -56,19 +56,19 @@
         "url": "http://www.gutenberg.org/ebooks/40005.txt.utf-8"
     },
     "Explorers and Travellers by A. W. Greely": {
-        "status": false,
+        "status": true,
         "url": "http://www.gutenberg.org/ebooks/36069.txt.utf-8"
     },
     "Roughing It by Mark Twain": {
-        "status": false,
+        "status": true,
         "url": "http://www.gutenberg.org/files/3177/3177-0.txt"
     },
     "Captain Cook's Journal During His First Voyage Round the World by James Cook": {
-        "status": false,
+        "status": true,
         "url": "http://www.gutenberg.org/ebooks/8106.txt.utf-8"
     },
     "Sailing Alone Around the World by Joshua Slocum": {
-        "status": false,
+        "status": true,
         "url": "http://www.gutenberg.org/ebooks/6317.txt.utf-8"
     },
     "The Journals of Lewis and Clark, 1804-1806 by William Clark and Meriwether Lewis": {
