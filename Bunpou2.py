@@ -37,18 +37,20 @@ def json_save(word):
     w_s = str(word)
     grammar = w_s.replace("['", "").replace("', '", " ").replace("']", "")
 
+    count = text.count(grammar)
+
     # 既にある場合
     try:
-        list[grammar] = list[grammar]+1
+        list[grammar] = list[grammar]+count
     # 新たに追加する場合
     except:
-        list[grammar] = 0
+        list[grammar] = count
     
     if grammar not in _slash:
         _slash.append(grammar)
 
 
-def renketu(j, text_line, text_line_length):
+def renketu(text_line, text_line_length):
     '''
         連結関数
 
@@ -64,14 +66,14 @@ def renketu(j, text_line, text_line_length):
     '''    
     global w, word, slash
 
-    # 次の行と比較する　最後の単語ではない場合 slash配列にwordが含まれていない場合　は処理する
-    if word in text[j] and text_line[text_line_length-1] not in word and word not in slash:
+    # wordがテキスト全体に1つ以上あるか　最後の単語ではない場合 slash配列にwordが含まれていない場合　は処理する
+    if 1 < text.count(word) and text_line[text_line_length-1] not in word and word not in slash:
 
         # combine
         w += 1
         word += " {}".format(text_line[w])
         
-        renketu(j, text_line, text_line_length)
+        renketu(text_line, text_line_length)
     else:
         w += 1
 
@@ -81,9 +83,8 @@ def renketu(j, text_line, text_line_length):
         # 最後の単語を削除
         w_s.pop()
 
-        if 1 < len(w_s):
-            # save
-            json_save(w_s)
+        # 保存
+        json_save(w_s)
 
 
 try:
@@ -120,8 +121,6 @@ try:
         text_length = len(text)
         # L1
         i = 0
-        # L2
-        j = 0
         # 一文の列の変数
         w = 0
         # データ一時保存
@@ -154,28 +153,20 @@ try:
                 # 一文の単語のサイズ
                 text_line_length = len(text_line)
 
-                j = i+1
-                
-                # L2 比較する行をループ
-                while j < text_length:
+                # 単語ループ
+                while w < text_line_length:
 
-                    # 一文の列をループ
-                    w = 0
+                    # 単語抽出
+                    word = text_line[w]
 
-                    # 単語ループ
-                    while w < text_line_length:
-
-                        # 単語抽出
-                        word = text_line[w]
-
-                        # 次の文に単語が含まれていたら次の単語と連結する
-                        renketu(j, text_line, text_line_length)
-
-                    j += 1
+                    # 次の文に単語が含まれていたら次の単語と連結する
+                    renketu(text_line, text_line_length)
 
             i += 1
 
         print("now writing...")
+
+        # Bunpou.jsonに文法を保存する
         with open("Bunpou.json", "r") as f:
             bunpou_data = json.load(f)
         listData = {}
@@ -195,6 +186,8 @@ try:
         
 except KeyboardInterrupt:
     print("プログラムを中断しています。\nこのプロセスで学習したデータは削除されます。")
+
+    # history.jsonをFalseに変更して保存する
     history_data[hd_key]["status"] = False
     with open("history.json", "w") as f:
         json.dump(history_data, f, indent=4)
