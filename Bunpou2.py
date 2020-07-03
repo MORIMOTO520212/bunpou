@@ -1,4 +1,4 @@
-import os, re, json, requests
+import os, re, json, requests, setting
 # ------- Bunpou ------- #
 # + このプログラムについて +
 # Bunpouは洋書物から文法を学習し、データから英文を解釈、出力として意味の区切れごとにスラッシュを打つ文法解析プログラムです。
@@ -25,19 +25,21 @@ import os, re, json, requests
 word = ''
 w = 0
 
+# Setting
+historyPath, BunpouPath = setting.set(0)
+
 def json_save(word):
     '''
-        jsonに文法を保存し、カウントします。
-
+        jsonに文法を保存し、カウントします。  
         wordの型は`配列`にして下さい。
     '''    
-    global list, _slash
+    global list, _slash, plain
 
     # 配列を文字列に変換する
     w_s = str(word)
-    grammar = w_s.replace("['", "").replace("', '", " ").replace("']", "")
+    grammar = w_s.replace("[\'", "").replace("\', \'", " ").replace("\']", "").replace("[\"", "").replace("\"]", "")
 
-    count = text.count(grammar)
+    count = plain.count(grammar)
 
     # 既にある場合
     try:
@@ -52,22 +54,19 @@ def json_save(word):
 
 def renketu(text_line, text_line_length):
     '''
-        連結関数
-
-        引数名 | 型 | 説明
-
-        `word` | str | 単語
-
-        `j` | int | 行
-
-        `text_line` | list | 単語で分割した配列
-
+        連結関数  
+        引数名 | 型 | 説明  
+        `word` | str | 単語  
+        `j` | int | 行  
+        `text_line` | list | 単語で分割した配列  
         `text_line_length` | int | 単語で分割した配列のサイズ
     '''    
-    global w, word, slash
+    global w, word, slash, plain
+
+    count = plain.count(word)
 
     # wordがテキスト全体に1つ以上あるか　最後の単語ではない場合 slash配列にwordが含まれていない場合　は処理する
-    if 1 < text.count(word) and text_line[text_line_length-1] not in word and word not in slash:
+    if 1 < count and text_line[text_line_length-1] not in word and word not in slash:
 
         # combine
         w += 1
@@ -84,13 +83,14 @@ def renketu(text_line, text_line_length):
         w_s.pop()
 
         # 保存
-        json_save(w_s)
+        if 1 < len(w_s):
+            json_save(w_s)
 
 
 try:
     while True:
         # 学習データを取得する
-        with open("history.json", "r") as f:
+        with open(historyPath, "r") as f:
             _history = json.load(f)
         history_data = {}
         history_data = _history
@@ -99,9 +99,12 @@ try:
             if history_data[hd_key]["status"] == False:
                 break
 
+        if history_data[hd_key]["status"] == True:
+            exit("全てのデータを処理し終わりました。")
+
         history_data[hd_key]["status"] = True
 
-        with open("history.json", "w") as f:
+        with open(historyPath, "w") as f:
             json.dump(history_data, f, indent=4)
 
         # テキストファイル読み込み
@@ -115,6 +118,7 @@ try:
         text = text.replace("\n", "")
         text = text.replace("? ","?")
         text = text.replace(". ",".")
+        plain = text
         text = re.split("[.?]", text)
 
         # テキスト全体のサイズ
@@ -153,6 +157,8 @@ try:
                 # 一文の単語のサイズ
                 text_line_length = len(text_line)
 
+                w = 0
+
                 # 単語ループ
                 while w < text_line_length:
 
@@ -167,7 +173,7 @@ try:
         print("now writing...")
 
         # Bunpou.jsonに文法を保存する
-        with open("Bunpou.json", "r") as f:
+        with open(BunpouPath, "r") as f:
             bunpou_data = json.load(f)
         listData = {}
         listData = bunpou_data
@@ -178,9 +184,8 @@ try:
             except:
                 listData[key] = list[key]
 
-        with open("Bunpou.json", "w") as f:
+        with open(BunpouPath, "w") as f:
             json.dump(listData, f, indent=4)
-
 
         print("complete!")
         
@@ -189,5 +194,5 @@ except KeyboardInterrupt:
 
     # history.jsonをFalseに変更して保存する
     history_data[hd_key]["status"] = False
-    with open("history.json", "w") as f:
+    with open(historyPath, "w") as f:
         json.dump(history_data, f, indent=4)

@@ -72,47 +72,47 @@
         "url": "http://www.gutenberg.org/ebooks/6317.txt.utf-8"
     },
     "The Journals of Lewis and Clark, 1804-1806 by William Clark and Meriwether Lewis": {
-        "status": false,
+        "status": true,
         "url": "http://www.gutenberg.org/ebooks/8419.txt.utf-8"
     },
     "What I Saw in America by G. K. Chesterton": {
-        "status": false,
+        "status": true,
         "url": "http://www.gutenberg.org/ebooks/27250.txt.utf-8"
     },
     "My Attainment of the Pole by Frederick Albert Cook": {
-        "status": false,
+        "status": true,
         "url": "http://www.gutenberg.org/ebooks/36962.txt.utf-8"
     },
     "The Sea: Its Stirring Story of Adventure, Peril, & Heroism. Volume 1 by Whymper": {
-        "status": false,
+        "status": true,
         "url": "http://www.gutenberg.org/files/39341/39341-0.txt"
     },
     "The Sea: Its Stirring Story of Adventure, Peril, & Heroism. Volume 2 by Whymper": {
-        "status": false,
+        "status": true,
         "url": "http://www.gutenberg.org/files/39342/39342-0.txt"
     },
     "The Sea: Its Stirring Story of Adventure, Peril, & Heroism. Volume 3 by Whymper": {
-        "status": false,
+        "status": true,
         "url": "http://www.gutenberg.org/files/39343/39343-0.txt"
     },
     "The Sea: Its Stirring Story of Adventure, Peril, & Heroism. Volume 4 by Whymper": {
-        "status": false,
+        "status": true,
         "url": "http://www.gutenberg.org/files/45033/45033-0.txt"
     },
     "Adventures in Swaziland: The Story of a South African Boer by Owen Rowe O'Neil": {
-        "status": false,
+        "status": true,
         "url": "http://www.gutenberg.org/ebooks/38447.txt.utf-8"
     },
     "Dracula by Bram Stoker": {
-        "status": false,
+        "status": true,
         "url": "http://www.gutenberg.org/ebooks/345.txt.utf-8"
     },
     "Grimms' Fairy Tales by Jacob Grimm and Wilhelm Grimm": {
-        "status": false,
+        "status": true,
         "url": "http://www.gutenberg.org/files/2591/2591-0.txt"
     },
     "The Brothers Karamazov by Fyodor Dostoyevsky": {
-        "status": false,
+        "status": true,
         "url": "http://www.gutenberg.org/files/28054/28054-0.txt"
     }
 }

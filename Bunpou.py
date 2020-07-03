@@ -1,4 +1,4 @@
-import os, re, json, requests
+import os, re, json, requests, setting
 # ------- Bunpou ------- #
 # + このプログラムについて +
 # Bunpouは洋書物から文法を学習し、データから英文を解釈、出力として意味の区切れごとにスラッシュを打つ文法解析プログラムです。
@@ -25,10 +25,11 @@ import os, re, json, requests
 word = ''
 w = 0
 
+historyPath, BunpouPath = setting.set(0)
+
 def json_save(word):
     '''
-        jsonに文法を保存し、カウントします。
-
+        jsonに文法を保存し、カウントします。  
         wordの型は`配列`にして下さい。
     '''    
     global list, _slash
@@ -50,18 +51,13 @@ def json_save(word):
 
 def renketu(j, text_line, text_line_length):
     '''
-        連結関数
-
-        引数名 | 型 | 説明
-
-        `word` | str | 単語
-
-        `j` | int | 行
-
-        `text_line` | list | 単語で分割した配列
-
+        連結関数  
+        引数名 | 型 | 説明  
+        `word` | str | 単語  
+        `j` | int | 行  
+        `text_line` | list | 単語で分割した配列  
         `text_line_length` | int | 単語で分割した配列のサイズ
-    '''    
+    ''' 
     global w, word, slash
 
     # 次の行と比較する　最後の単語ではない場合 slash配列にwordが含まれていない場合　は処理する
@@ -97,6 +93,9 @@ try:
         for hd_key in history_data:
             if history_data[hd_key]["status"] == False:
                 break
+
+        if history_data[hd_key]["status"] == True:
+            exit("全てのデータを処理し終わりました。")
 
         history_data[hd_key]["status"] = True
 
