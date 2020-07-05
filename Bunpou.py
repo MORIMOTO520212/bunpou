@@ -36,7 +36,7 @@ def json_save(word):
 
     # 配列を文字列に変換する
     w_s = str(word)
-    grammar = w_s.replace("['", "").replace("', '", " ").replace("']", "")
+    grammar = w_s.replace("['", "").replace("', '", " ").replace("']", "").replace("[\"", "").replace("\"]", "")
 
     # 既にある場合
     try:
