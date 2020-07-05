@@ -196,3 +196,5 @@ except KeyboardInterrupt:
     history_data[hd_key]["status"] = False
     with open(historyPath, "w") as f:
         json.dump(history_data, f, indent=4)
+    
+    input()
