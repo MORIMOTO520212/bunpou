@@ -20,7 +20,7 @@ import os, re, json, requests, setting
 
 # ~Note
 # プログレスバー追加する
-# 推定時間を測る
+# 推定時間
 
 word = ''
 w = 0
@@ -191,10 +191,9 @@ try:
         
 except KeyboardInterrupt:
     print("プログラムを中断しています。\nこのプロセスで学習したデータは削除されます。")
-
     # history.jsonをFalseに変更して保存する
     history_data[hd_key]["status"] = False
     with open(historyPath, "w") as f:
         json.dump(history_data, f, indent=4)
-    
-    input()
+
+    input("何かキーを押して終了してください。")
