@@ -1,5 +1,7 @@
 import json
 
+# 頻出度の文法を降順で調べる
+
 json_data = {}
 
 with open("Bunpou.json", "r", encoding="utf-8") as f:
