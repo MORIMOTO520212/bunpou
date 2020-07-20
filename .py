@@ -1,9 +1,5 @@
-text = 'I never had a turtle before, so I asked my parents if I could keep it.'
-sentence = text
+import subprocess
 
-text = text.replace(".", "").replace("?", "")
-sentenceSpace = [" " for _ in text]
-text = text.split(" ")
-
-
-print(sentenceSpace)
+for i in range(5000000):
+    subprocess.call(['cls'])
+    print(i)

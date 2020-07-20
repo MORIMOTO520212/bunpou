@@ -3,7 +3,10 @@ import requests, json, re, setting
 
 historyPath, BunpouPath = setting.set(0)
 
-i = 1
+with open(BunpouPath, 'r') as f:
+    data = json.load(f)
+
+i = len(data)
 while True:
     html = requests.get('http://www.gutenberg.org/ebooks/{}'.format(i))
     soup = BeautifulSoup(html.text, 'html.parser')
