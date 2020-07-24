@@ -3,7 +3,7 @@ import requests, json, re, setting
 
 historyPath, BunpouPath = setting.set(0)
 
-with open(BunpouPath, 'r') as f:
+with open(historyPath, 'r') as f:
     data = json.load(f)
 
 i = len(data)
@@ -13,7 +13,7 @@ while True:
     title = soup.select('#content > div.header > h1')
     title = title[0]
     title = re.split('[<>]', str(title))
-    print(title[2])
+    print(i, title[2])
 
     url = 'http://www.gutenberg.org/ebooks/{}.txt.utf-8'.format(str(i))
 

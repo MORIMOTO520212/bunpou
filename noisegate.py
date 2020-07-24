@@ -14,11 +14,21 @@ try:
             list.append(key)
         elif " " == key:
             list.append(key)
+        elif ";" == key:
+            list.append(key)
         elif "\r" in key:
             list.append(key)
         elif "\"" in key:
             list.append(key)
         elif "\\x80\x9d" in key:
+            list.append(key)
+        elif "{" in key:
+            list.append(key)
+        elif "}" in key:
+            list.append(key)
+        elif "[" in key:
+            list.append(key)
+        elif "]" in key:
             list.append(key)
 
     for key in list:
