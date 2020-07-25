@@ -6,25 +6,11 @@ import json
 with open('Bunpou.json', 'r') as f:
     data = json.load(f)
 
-print("+Bunpou Detector+\n")
-print("levelとは読解の感度を表す値を表すもので、低く設定すると文法の感度が高まりますが、意味のない文法を解釈してしまう可能性が高くなります。\n平均は10です。")
-level = input("level >")
-text = input("text here >")
-
-if level == "":
-    print("levelを10に設定します。")
-    level = 10
-
-sentence = text
-
-text = text.replace(".", "").replace("?", "")
-
-sentenceSpace = [" " for _ in text] # 文の一文字一文字を格納する配列
-
-text = text.split(" ")
-
-textLength = len(text)
-
+level    = ""
+text     = ""
+sentence = ""
+sentenceSpace = [] # 文の一文字一文字を格納する配列
+textLength = 0
 w = 0
 word = ""
 bunpou = [] # センテンスに含まれる文法を抽出し格納する変数
@@ -68,6 +54,20 @@ def detector(l):
 
 
 if __name__=='__main__':
+    print("+Bunpou Detector+\n")
+    print("levelとは読解の感度を表す値を表すもので、低く設定すると文法の感度が高まりますが、意味のない文法を解釈してしまう可能性が高くなります。\n平均は10~60です。")
+    level = input("level >")
+    text = input("text here >")
+
+    if level == "":
+        print("levelを10に設定します。")
+        level = 10
+
+    sentence = text
+    text = text.replace(".", "").replace("?", "")
+    sentenceSpace = [" " for _ in text] # 文の一文字一文字を格納する配列
+    text = text.split(" ")
+    textLength = len(text)
 
     print("解析中\n")
     while w < textLength:
@@ -95,9 +95,9 @@ if __name__=='__main__':
                 while h < len(text2):
                     sentenceSpace[sentence.find(text2)+h] = "-"
                     h += 1
-                #choiceBunpou.append("2:"+text2)
+                choiceBunpou.append("2:"+text2)
 
-                i += 2
+                i += 1
             else:
                 #for _ in range(len(text1)): print("-", end="")
                 #for _ in range(len(text2)-len(res)): print(" ", end="")
@@ -105,16 +105,16 @@ if __name__=='__main__':
                 while h < len(text1):
                     sentenceSpace[sentence.find(text1)+h] = "-"
                     h += 1
-                #choiceBunpou.append("1:"+text1)
+                choiceBunpou.append("1:"+text1)
 
-                i += 1
+                i += 2
         else:
             #for _ in range(len(text1)): print("-", end="")
             #for _ in range(len(text2)-len(res)): print(" ", end="")
             while h < len(text1):
                 sentenceSpace[sentence.find(text1)+h] = "-"
                 h += 1
-            #choiceBunpou.append("0:"+text1)
+            choiceBunpou.append("0:"+text1)
 
             i += 1
     
@@ -124,5 +124,7 @@ if __name__=='__main__':
         underline += string
     print(underline)
 
-    #for bunpouS in choiceBunpou:
-    #    print(bunpouS)
+    for _ in bunpou:
+        print(_)
+    for bunpouS in choiceBunpou:
+        print(bunpouS)
