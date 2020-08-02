@@ -1,7 +1,7 @@
 import os, re, json, requests, setting
 # ------- Bunpou ------- #
 # + このプログラムについて +
-# Bunpouは洋書物から文法を学習し、データから英文を解釈、出力として意味の区切れごとにスラッシュを打つ文法解析プログラムです。
+# Bunpouは洋書物から文法を学習し、データから英文を解釈、出力として意味の区切れごとにアンダーラインを打つ文法解析プログラムです。
 # 独自の差分プログラムを使っています。
 # 実行環境 Windows10
 # 作成日 2020/06/29
@@ -23,6 +23,7 @@ import os, re, json, requests, setting
 
 word = ''
 w = 0
+cnt = 0
 
 # Setting
 historyPath, BunpouPath = setting.set(0)
@@ -138,12 +139,14 @@ try:
             # L1 メインの行のループ
             while i < text_length:
                 os.system("cls")
-                print("+ Bunpou +\n")
-                print("~ {} ~\n".format(hd_key))
-                print("text line : 現在プロセス/総プロセス数")
-                print("text line : {}/{}".format(str(i), text_length-1))
-                print("Ctrl+C to quit")
-
+                print(
+                "+ Bunpou +\n"\
+                "cp process : {}\n"\
+                "title      : {}\n"\
+                "text line  : 現在のプロセス/総プロセス数\n"\
+                "text line  : {}/{}\n"\
+                "Ctrl+C to quit".format(str(cnt), hd_key, str(i), text_length-1))
+                
                 # 配列結合
                 slash.extend(_slash)
                 _slash.clear()
@@ -172,6 +175,15 @@ try:
 
             print("now writing...")
 
+            # 同期プリミティブ
+            while True:
+                with open('.syncprimitive', 'r') as f:
+                    sp = int(f.read())
+                if not sp:
+                    break
+            # ロック
+            with open('.syncprimitive', 'w') as f:
+                f.write("1")
             # Bunpou.jsonに文法を保存する
             with open(BunpouPath, "r") as f:
                 bunpou_data = json.load(f)
@@ -186,9 +198,14 @@ try:
 
             with open(BunpouPath, "w") as f:
                 json.dump(listData, f, indent=4)
+            # 解除
+            with open('.syncprimitive', 'w') as f:
+                f.write("0")
+
 
             print("complete!")
-            
+            cnt += 1
+
     except KeyboardInterrupt:
         print("プログラムを中断しています。\nこのプロセスで学習したデータは削除されます。")
         # history.jsonをFalseに変更して保存する
@@ -198,5 +215,5 @@ try:
 
         input("エンターキーを押して終了する。")
 except Exception as e:
-    print(str(e))
+    print("error : ", str(e))
     input("エンターキーを押して終了する。")

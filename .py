@@ -1,5 +1,2 @@
-import subprocess
-
-for i in range(5000000):
-    subprocess.call(['cls'])
-    print(i)
+with open('.syncprimitive', 'r') as f:
+    print(f.read())
