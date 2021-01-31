@@ -1,8 +1,7 @@
 import os, re, json, requests, setting
-from time import sleep
 # ------- Bunpou ------- #
 # + このプログラムについて +
-# Bunpouは洋書物から文法を学習し、データから文法を推測、出力として意味の区切れごとにアンダーラインを打つプログラムです。
+# Bunpouは洋書物から文法を学習し、データから英文を解釈、出力として意味の区切れごとにアンダーラインを打つ文法解析プログラムです。
 # 独自の差分プログラムを使っています。
 # 実行環境 Windows10
 # 作成日 2020/06/29
@@ -180,7 +179,6 @@ try:
             while True:
                 with open('.syncprimitive', 'r') as f:
                     sp = int(f.read())
-                    sleep(5)
                 if not sp:
                     break
             # ロック
