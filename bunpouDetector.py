@@ -128,3 +128,4 @@ if __name__=='__main__':
         print(_)
     for bunpouS in choiceBunpou:
         print(bunpouS)
+    input()
