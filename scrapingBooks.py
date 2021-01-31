@@ -7,10 +7,11 @@ with open(historyPath, 'r') as f:
     data = json.load(f)
 
 i = len(data)
+i = 9932
 while True:
     html = requests.get('http://www.gutenberg.org/ebooks/{}'.format(i))
     soup = BeautifulSoup(html.text, 'html.parser')
-    title = soup.select('#content > div.header > h1')
+    title = soup.select('#content > h1')
     title = title[0]
     title = re.split('[<>]', str(title))
     print(i, title[2])
