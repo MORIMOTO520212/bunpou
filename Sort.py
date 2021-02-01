@@ -20,5 +20,3 @@ for _ in range(100):
     print(max_key+": "+str(json_data[max_key]))
 
     del json_data[max_key]
-
-input()
