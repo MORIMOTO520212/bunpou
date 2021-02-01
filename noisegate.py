@@ -16,6 +16,8 @@ try:
             list.append(key)
         elif ";" == key:
             list.append(key)
+        elif " the" == key:
+            list.append(key)
         elif "\r" in key:
             list.append(key)
         elif "\"" in key:
