@@ -55,7 +55,7 @@ def detector(l):
 
 if __name__=='__main__':
     print("+Bunpou Detector+\n")
-    print("levelとは読解の感度を表す値を表すもので、低く設定すると文法の感度が高まりますが、意味のない文法を解釈してしまう可能性が高くなります。\n平均は10~60です。")
+    print("levelとは読解の感度を表す値を表すもので、低く設定すると文法の感度が高まりますが、意味のない文法を解釈してしまう可能性が高くなります。\n目安は10~1000です。")
     level = input("level >")
     text = input("text here >")
 
@@ -79,6 +79,7 @@ if __name__=='__main__':
     bunpouLength = len(bunpou)
 
     # 文法内の単語が被った場合、頻出度が多い方を選び、アンダーラインを設定する
+    h = 0
     while i < bunpouLength-1:
         text1 = [key for key in bunpou[i].keys()][0]
         text2 = [key for key in bunpou[i+1].keys()][0]
@@ -124,8 +125,8 @@ if __name__=='__main__':
         underline += string
     print(underline)
 
-    for _ in bunpou:
-        print(_)
-    for bunpouS in choiceBunpou:
-        print(bunpouS)
+    #for _ in bunpou:
+    #    print(_)
+    #for bunpouS in choiceBunpou:
+    #    print(bunpouS)
     input()
